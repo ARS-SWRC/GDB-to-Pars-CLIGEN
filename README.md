@@ -2,7 +2,7 @@
 Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
 
 ## Setup
-'''bash
+```bash
 -CWD
   |--list.txt
   |--search_stations.txt
@@ -14,4 +14,4 @@ Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
   |--MIROC5.gdb
   |--classes
     |--formatting.py
-'''
+```
