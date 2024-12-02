@@ -1,0 +1,5 @@
+id,lat_dd,lon_dd,yr_window,gcm_name,wind_str_option
+testA,40,-111,1974_2013,CCSM4,Search
+stationB,35,-110,2000_2029,CCSM4,Search
+pointC,34,-109,2070_2099,CCSM4,test_stringA
+siteD,40,-117,2050_2079,CCSM4,test_stringB
