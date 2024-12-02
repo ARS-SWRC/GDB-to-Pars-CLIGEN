@@ -5,7 +5,7 @@ Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
 - Python 3.9 minimum
 - GDAL/osgeo library 3.10 minimum
 
-## Setup
+## Directory Setup
 ```bash
 -Current Working Dir
    |--list.txt
