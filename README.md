@@ -1,6 +1,10 @@
 # GDB-to-Pars-CLIGEN
 Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
 
+## Requirements
+-Python 3.9 minimum
+-GDAL/osgeo library
+
 ## Setup
 ```bash
 -Current Working Dir
