@@ -13,5 +13,7 @@ Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
    |--CanESM2.gdb
    |--MIROC5.gdb
    |--classes
-      |--formatting.py
+       |--formatting.py
+   |--pars
+       |--
 ```
