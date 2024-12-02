@@ -2,7 +2,7 @@
 Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
 
 ## Setup
-bash '''
+'''bash
 -CWD
   |--list.txt
   |--search_stations.txt
