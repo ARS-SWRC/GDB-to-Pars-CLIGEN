@@ -19,6 +19,7 @@ Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
    |--MIROC5.gdb
    |--classes
        |--formatting.py
+       |--__init__.py
    |--parfiles-2015
        |--*.par
    |--CL_Tool.exe (if using executable, move from dist folder to here)
