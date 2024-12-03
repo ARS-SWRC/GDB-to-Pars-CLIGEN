@@ -28,3 +28,5 @@ Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
    |--build (created by pyinstaller when compiling exe)
    |--dist (created by pyinstaller when compiling exe)
 ```
+## User Inputs
+The main options are specified in list.txt and should be modified by the user. This file contains a list of points to create *.par files for that will be written to the pars folder. The version of this file in this repository has placeholder entries as examples.
