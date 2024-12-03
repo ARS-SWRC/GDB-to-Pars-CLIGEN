@@ -24,6 +24,8 @@ Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
        |--__init__.py
    |--parfiles-2015
        |--*.par
+   |--CL_Tool_Standalone.py (if running as Python script only)
+   |--CL_Tool.py (if compiling exe)
    |--CL_Tool.exe (if using executable, move from dist folder to here)
    |--build (created by pyinstaller when compiling exe)
    |--dist (created by pyinstaller when compiling exe)
@@ -31,9 +33,18 @@ Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
 ## User Inputs
 The main options are specified in `list.txt` and should be modified by the user. This file contains a list of lat/lon points to create *.par files for, which will be written to the `pars` folder. The version of `list.txt` in this repository has placeholder entries as examples. 
 
+Valid GCM strings:
+```sh
+CCSM4, CanESM2, MIROC5
+```
+
 Valid year window strings:
 ```sh
 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099
 ```
 
+Valid wind options:
+```sh
+Search, <some_custom_wind_string_name>
+```
 
