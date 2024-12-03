@@ -1,6 +1,9 @@
 # GDB-to-Pars-CLIGEN
 Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
 
+## Description
+This Python-based package queries ESRI formatted geodatabases (GDBs) that contain CLIGEN parameter map sets representing climate change. The GDBs are supplied as part of the SWPar4.5 dataset with coverage of the southwestern U.S. states of Nevada, Utah, Arizona and New Mexico at ~800m resolution.
+
 ## Requirements
 - Python 3.9 minimum
 - GDAL/osgeo library 3.10 minimum
