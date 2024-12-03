@@ -2,7 +2,7 @@
 Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
 
 ## Description
-This Python-based package queries ESRI formatted geodatabases (GDBs) that contain CLIGEN parameter map sets representing climate change. The GDBs are supplied as part of the SWPar4.5 dataset with coverage of the southwestern U.S. states of Nevada, Utah, Arizona and New Mexico at ~800m resolution.
+This Python-based package queries ESRI formatted geodatabases (GDBs) that contain CLIGEN parameter map sets representing climate change. The GDBs are supplied as part of the SWPar4.5 dataset with coverage of Nevada, Utah, Arizona and New Mexico in the southwestern U.S. at ~800m resolution.
 
 ## Requirements
 - Python 3.9 minimum
@@ -34,7 +34,7 @@ This Python-based package queries ESRI formatted geodatabases (GDBs) that contai
    |--dist (created by pyinstaller when compiling exe)
 ```
 ## User Inputs
-The main options are specified in `list.txt` and should be modified by the user. This file contains a list of lat/lon points to create *.par files for, which will be written to the `pars` folder. The version of `list.txt` in this repository has placeholder entries as examples. 
+The main options are specified in `list.txt` and should be modified by the user. This file contains a list of lat/lon points to write *.par files for to the `pars` folder. The version of `list.txt` in this repository has placeholder entries as examples. The SWPar4.5 dataset includes all required parameters except for wind parameter sets. In order to produce complete *.par files, an option is to put custom *.txt files inside `wind-strings` that contain formatted wind parameter text blocks, which may be taken from `parfiles-2015`. It is then necessary to put the names of the *.txt files in `List.txt`. An easier option is using `Search` as the wind option in `List.txt`, which automatically uses wind parameter sets from the nearest station in `parfiles-2015`.
 
 Valid GCM strings:
 ```sh
