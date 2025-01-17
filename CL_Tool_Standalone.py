@@ -98,6 +98,8 @@ def find_closest_point(lat, lon, spoints):
       closest_point = spoint[0]
   return closest_point
 
+
+
 def main(point, spoints):
   var_labels = ['mean', 'sdev', 'skew', 'pww', 'pwd', 'tmax', 'tmin', 'txsd', 'tnsd', 'srad', 'srsd', 'mx5p', 'tdew', 'timepk']
   historical_var_labels = ['timepk']
@@ -152,20 +154,20 @@ def main(point, spoints):
   par_df.loc['srad'] = par_df.loc['srad'].apply(lambda x: x*86400.0/41868.0)
   par_df.loc['srsd'] = par_df.loc['srsd'].apply(lambda x: x*86400.0/41868.0)
   
-  meanP_list = par_df.loc['mean']
-  sdevP_list = par_df.loc['sdev']
+  meanP_list = par_df.loc['mean'].clip(lower=0.01)
+  sdevP_list = par_df.loc['sdev'].clip(lower=0.01)
   skewP_list = par_df.loc['skew']
-  ww_list = par_df.loc['pww']
-  wd_list = par_df.loc['pwd']
+  ww_list = par_df.loc['pww'].clip(lower=0.01, upper=0.99)
+  wd_list = par_df.loc['pwd'].clip(lower=0.01, upper=0.99)
   tmax_list = par_df.loc['tmax']
   tmin_list = par_df.loc['tmin']
-  sdtmax_list = par_df.loc['txsd']
-  sdtmin_list = par_df.loc['tnsd']
-  solrad_list = par_df.loc['srad']
-  solsdev_list = par_df.loc['srsd']
-  mx5p_list = par_df.loc['mx5p']
+  sdtmax_list = par_df.loc['txsd'].clip(lower=0.01)
+  sdtmin_list = par_df.loc['tnsd'].clip(lower=0.01)
+  solrad_list = par_df.loc['srad'].clip(lower=0.01)
+  solsdev_list = par_df.loc['srsd'].clip(lower=0.01)
+  mx5p_list = par_df.loc['mx5p'].clip(lower=0.01)
   dewpt_list = par_df.loc['tdew']
-  timepk_list = par_df.loc['timepk'].sort_values()
+  timepk_list = par_df.loc['timepk'].sort_values().clip(lower=0.01, upper=0.99)
   
   meanP, sdevP, skewP, ww, wd = [], [], [], [], []
   tmax, tmin, sdtmax, sdtmin = [], [], [], []
@@ -240,8 +242,8 @@ if __name__ == '__main__':
   points = readlist(listFILE)
   spoints = readsearchlist(searchFILE)
   for i, point in enumerate(points):
+    print(point[0])
     gcm_name = point[4]
     gdbDIR = os.path.join(cwd, '{}.gdb'.format(gcm_name))
     main(point, spoints)
-
-
+    
