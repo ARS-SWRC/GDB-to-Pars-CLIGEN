@@ -163,7 +163,7 @@ def main(point, spoints):
   tmin_list = par_df.loc['tmin']
   sdtmax_list = par_df.loc['txsd'].clip(lower=0.01)
   sdtmin_list = par_df.loc['tnsd'].clip(lower=0.01)
-  solrad_list = par_df.loc['srad'].clip(lower=0.01)
+  solrad_list = par_df.loc['srad'].clip(lower=0.0)
   solsdev_list = par_df.loc['srsd'].clip(lower=0.01)
   mx5p_list = par_df.loc['mx5p'].clip(lower=0.01)
   dewpt_list = par_df.loc['tdew']
