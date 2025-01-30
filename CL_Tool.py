@@ -168,7 +168,7 @@ def main(point, spoints):
   solsdev_list = par_df.loc['srsd'].clip(lower=0.01)
   mx5p_list = par_df.loc['mx5p'].clip(lower=0.01)
   dewpt_list = par_df.loc['tdew']
-  timepk_list = par_df.loc['timepk'].sort_values().clip(lower=0.01, upper=0.99)
+  timepk_list = par_df.loc['timepk'].sort_values().clip(lower=0.01, upper=1.00)
   
   meanP, sdevP, skewP, ww, wd = [], [], [], [], []
   tmax, tmin, sdtmax, sdtmin = [], [], [], []
