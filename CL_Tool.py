@@ -9,7 +9,7 @@
 'There are two wind options to get wind parameters, since wind data isnt included in the GDBs'
 'Wind option takes data from nearest CLIGEN ground net station with wind data when set to Search'
 'Wind option takes data from formatted wind string copied to txt file in /wind-strings when set to the name of the txt file (without .txt extension)'
-'Command line to create exe using pyinstaller: pyinstaller --onefile CL_Tool.py'
+'Command line to create exe using pyinstaller: pyinstaller --onefile --window CL_Tool.py'
 'This command creates build and dist folders inside cwd. Copy Exe from dist to top of directory before running exe'
 ####
 
