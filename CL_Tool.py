@@ -136,7 +136,7 @@ def main(point, spoints):
       pixel_value = band.ReadAsArray(int(xp), int(yp), 1, 1)[0, 0] 
       par_df.at[varlb, mo] = pixel_value  
       band = None
-  
+    raster.FlushCache()
     raster = None
   
   raster_name = 'DEM'
@@ -145,6 +145,7 @@ def main(point, spoints):
   pixel_value = band.ReadAsArray(int(xp), int(yp), 1, 1)[0, 0] 
   dem_elev = pixel_value*3.28084
   band = None
+  raster.FlushCache()
   raster = None
   
   par_df.loc['tmax'] = par_df.loc['tmax'].apply(lambda x: x*(9.0/5.0) + 32.0)
