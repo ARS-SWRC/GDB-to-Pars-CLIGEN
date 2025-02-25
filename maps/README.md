@@ -21,7 +21,7 @@ Creates parameter maps in geotiff format for cases where ESRI GDB is not the pre
        |--dist (created by pyinstaller when compiling exe, not needed after compiling)
 ```
 ## User Inputs
-The main options are specified in `list.txt` and should be modified by the user. This file contains a list of lat/lon points to write *.par files to the `pars` folder. `list.txt` has placeholder entries as examples, with resulting placeholder files inside `pars` and `wind-strings`. The SWPar4.5 dataset includes all required parameters except for wind parameter sets. In order to produce complete *.par files, an option is to put custom *.txt files inside `wind-strings` that contain formatted wind parameter text blocks, which may be taken from ground stations in `parfiles-2015`. It is then necessary to put the names of these *.txt files in `list.txt`. An easier option is using `Search` as the wind option in `list.txt`, which automatically uses wind parameter sets from the nearest station in `parfiles-2015`.
+The main options are specified in `list.txt` and should be modified by the user. This file contains a list of lat/lon points to write *.par files to the `maps_out` folder. `list.txt` has placeholder entries as examples. It is then necessary to put the names of these *.txt files in `list.txt`. An easier option is using `Search` as the wind option in `list.txt`, which automatically uses wind parameter sets from the nearest station in `parfiles-2015`.
 
 Valid GCM strings:
 ```sh
@@ -33,8 +33,8 @@ Valid year window strings:
 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099
 ```
 
-Valid wind options:
+Valid variable names options:
 ```sh
-Search, <some_custom_wind_string_name>
+ DEM, accm, mean, mx5p, pwd, pww, ratio, sdev, skew, srad, srsd, tdew, timepk, tmax, tmin, tnsd, txsd
 ```
-
+Note that for DEM, ratio, and timepk, only the 1974_2013 window is valid.
