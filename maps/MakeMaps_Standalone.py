@@ -5,7 +5,6 @@ from osgeo import ogr
 from osgeo import gdal
 
 cwd = os.getcwd()
-
 mapDIR = os.path.join(cwd)
 listFILE = os.path.join(cwd, 'list.txt')
 
@@ -24,9 +23,12 @@ def readlist(listFILE):
 
 def makegeotiff(var, yr, gdb):
   gdbDIR = os.path.join(os.path.split(cwd)[:-1][0], '{}.gdb'.format(gdb))
-  output = os.path.join(mapDIR, var + '_' + yr + '.tif')
   driver = gdal.GetDriverByName('GTiff')
-  raster_name = var + '_' + yr
+  if var != 'DEM':
+    raster_name = var + '_' + yr
+  else:
+    raster_name = var
+  output = os.path.join(mapDIR, 'maps_out', raster_name + '.tif')
   dataset = gdal.Open(f'OpenFileGDB:{gdbDIR}:{raster_name}')
   transform = dataset.GetGeoTransform()
   srs = dataset.GetSpatialRef()
@@ -45,3 +47,4 @@ if __name__ == '__main__':
   maps = readlist(listFILE)
   for m in maps:
     makegeotiff(m[0], m[1], m[2])
+  
