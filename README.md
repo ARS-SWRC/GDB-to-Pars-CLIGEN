@@ -12,7 +12,7 @@ This Python-based package queries ESRI formatted geodatabases (GDBs) that contai
 
 ## Directory Setup
 ```bash
--Current Working Dir
+-Current Working Dir for CL_Tool.py
    |--list.txt
    |--search_stations.txt
    |--pars
