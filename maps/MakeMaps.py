@@ -8,7 +8,7 @@
 'VALID GCM NAME STRINGS: CCSM4, CanESM2, MIROC5'
 'Note that for DEM, ratio, and timepk, only the 1974_2013 window is valid.'
 'Command line to create exe using pyinstaller: pyinstaller --onefile --window MakeMaps.py'
-'This command creates build and dist folders inside cwd. Copy Exe from dist to top of directory before running exe'
+'This command creates build and dist folders inside cwd. Copy Exe from dist to top of maps folder before running exe'
 ####
 
 import sys
