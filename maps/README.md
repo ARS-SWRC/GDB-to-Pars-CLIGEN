@@ -38,4 +38,4 @@ Valid year window strings:
 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099
 ```
 
-Note that for DEM, ratio, and timepk, only the 1974_2013 window is valid.
+*For DEM, ratio, and timepk, only the 1974_2013 window is valid.
