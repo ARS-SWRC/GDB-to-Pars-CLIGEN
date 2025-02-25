@@ -28,13 +28,14 @@ Valid GCM strings:
 CCSM4, CanESM2, MIROC5
 ```
 
+Valid variable names options:
+```sh
+ DEM, accm, mean, mx5p, pwd, pww, ratio, sdev, skew, srad, srsd, tdew, timepk, tmax, tmin, tnsd, txsd
+```
+
 Valid year window strings:
 ```sh
 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099
 ```
 
-Valid variable names options:
-```sh
- DEM, accm, mean, mx5p, pwd, pww, ratio, sdev, skew, srad, srsd, tdew, timepk, tmax, tmin, tnsd, txsd
-```
 Note that for DEM, ratio, and timepk, only the 1974_2013 window is valid.
