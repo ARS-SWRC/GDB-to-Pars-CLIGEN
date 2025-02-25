@@ -1,4 +1,4 @@
-# GDB-to-Maps-CLIGEN
+# MakeMaps.py
 Creates CLIGEN parameter maps in geotiff format.
 
 ## Description
