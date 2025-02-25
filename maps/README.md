@@ -14,6 +14,8 @@ Creates parameter maps in geotiff format for cases where ESRI GDB is not the pre
 ```bash
 --CL_Tool
     |--maps
+       |--pars
+          |--*.tif
        |--MakeMaps_Standalone.py (if running as Python script only)
        |--MakeMaps.py (if compiling exe)
        |--MakeMaps.exe (if compiling exe, move exe from dist folder to here)
