@@ -31,7 +31,7 @@ Valid GCM strings:
 CCSM4, CanESM2, MIROC5
 ```
 
-Valid variable names options:
+Valid variable names:
 ```sh
  DEM, accm, mean, mx5p, pwd, pww, ratio, sdev, skew, srad, srsd, tdew, timepk, tmax, tmin, tnsd, txsd
 ```
