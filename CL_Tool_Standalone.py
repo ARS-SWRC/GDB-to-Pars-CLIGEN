@@ -1,16 +1,15 @@
 
 ####
 'GDAL requires Python 3.9 minimum.'
-'Exe or py script need to be run from top of directory structure'
-'Modify list.txt with query info with columns: id, lat, lon, year window, gcm name, wind option'
-'VALID YEAR WINDOW STRINGS: 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099'
-'VALID GCM NAME STRINGS: CCSM4, CanESM2, MIROC5'
-'id can be string of own choosing, but valid year windows and gcms must be used'
+'Same as CL_Tool.py script except it doesnt create an exe.'
+'Exe or py script need to be run from top of directory structure.'
+'Modify list.txt with query info with columns: id, lat, lon, year window, gcm name, wind option.'
+'VALID YEAR WINDOW STRINGS: 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099.'
+'VALID GCM NAME STRINGS: CCSM4, CanESM2, MIROC5.'
+'id can be string of own choosing, but valid year windows and gcms must be used.'
 'There are two wind options to get wind parameters, since wind data isnt included in the GDBs.'
 'Wind option takes data from nearest CLIGEN ground net station with wind data when set to Search.'
-'Wind option takes data from formatted wind string copied to txt file in /wind-strings when set to the name of the txt file (without .txt extension)'
-'Command line to create exe using pyinstaller: pyinstaller --onefile CL_Tool.py'
-'This command creates build and dist folders inside cwd. Copy Exe from dist to top of directory before running exe.'
+'Wind option takes data from formatted wind string copied to txt file in /wind-strings when set to the name of the txt file (without .txt extension).'
 ####
 
 import sys
@@ -135,6 +134,7 @@ def main(point, spoints):
       pixel_value = band.ReadAsArray(int(xp), int(yp), 1, 1)[0, 0] 
       par_df.at[varlb, mo] = pixel_value  
       band = None
+    
     raster.FlushCache()
     raster = None
   
@@ -237,6 +237,9 @@ def main(point, spoints):
     
     f_out.write(wind_str)
                  
+    if wind != 'Search':
+      f_out.write('---\n')
+
 
 
 if __name__ == '__main__':
@@ -247,4 +250,3 @@ if __name__ == '__main__':
     gcm_name = point[4]
     gdbDIR = os.path.join(cwd, '{}.gdb'.format(gcm_name))
     main(point, spoints)
-    
