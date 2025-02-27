@@ -1,16 +1,16 @@
 
 ####
-'GDAL requires Python 3.9 minimum'
-'Exe or py script need to be run from top of directory structure'
-'Modify list.txt with query info with columns: id, lat, lon, year window, gcm name, wind option'
-'VALID YEAR WINDOW STRINGS: 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099'
-'VALID GCM NAME STRINGS: CCSM4, CanESM2, MIROC5'
-'id can be string of own choosing, but valid year windows and gcms must be used'
-'There are two wind options to get wind parameters, since wind data isnt included in the GDBs'
-'Wind option takes data from nearest CLIGEN ground net station with wind data when set to Search'
-'Wind option takes data from formatted wind string copied to txt file in /wind-strings when set to the name of the txt file (without .txt extension)'
-'Command line to create exe using pyinstaller: pyinstaller --onefile --window CL_Tool.py'
-'This command creates build and dist folders inside cwd. Copy Exe from dist to top of directory before running exe'
+'GDAL requires Python 3.9 minimum.'
+'Exe or py script need to be run from top of directory structure.'
+'Modify list.txt with query info with columns: id, lat, lon, year window, gcm name, wind option.'
+'VALID YEAR WINDOW STRINGS: 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099.'
+'VALID GCM NAME STRINGS: CCSM4, CanESM2, MIROC5.'
+'id can be string of own choosing, but valid year windows and gcms must be used.'
+'There are two wind options to get wind parameters, since wind data isnt included in the GDBs.'
+'Wind option takes data from nearest CLIGEN ground net station with wind data when set to Search.'
+'Wind option takes data from formatted wind string copied to txt file in /wind-strings when set to the name of the txt file (without .txt extension).'
+'Command line to create exe using pyinstaller: pyinstaller --onefile --window CL_Tool.py.'
+'This command creates build and dist folders inside cwd. Copy Exe from dist to top of directory before running exe.'
 ####
 
 import sys
@@ -237,7 +237,10 @@ def main(point, spoints):
     f_out.write( 'Time Pk ' + ''.join([next(gen) + str(x) + next(gen) if i < 1 else str(x) if i == 11 else str(x) + next(gen) for i, x in enumerate(timepk)]) + '\n')
     
     f_out.write(wind_str)
-                 
+
+    if wind != 'Search':
+      f_out.write('---\n')
+
 
 
 if __name__ == '__main__':
