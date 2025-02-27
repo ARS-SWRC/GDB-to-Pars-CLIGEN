@@ -22,7 +22,6 @@ from osgeo import ogr
 from osgeo import gdal
 
 
-
 application_path = os.path.dirname(sys.executable)
 cwd = application_path
 
