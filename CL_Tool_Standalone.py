@@ -12,14 +12,12 @@
 'Wind option takes data from formatted wind string copied to txt file in /wind-strings when set to the name of the txt file (without .txt extension).'
 ####
 
-import sys
 import os
 import pandas as pd
 from classes.Formatting import Formatting
 formatting_obj = Formatting()
 from osgeo import ogr
 from osgeo import gdal
-
 
 
 cwd = os.getcwd()
