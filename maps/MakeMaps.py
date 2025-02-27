@@ -13,12 +13,12 @@
 
 import sys
 import os
-import pandas as pd
-from osgeo import ogr
 from osgeo import gdal
+
 
 application_path = os.path.dirname(sys.executable)
 cwd = application_path
+
 mapDIR = os.path.join(cwd)
 listFILE = os.path.join(cwd, 'list.txt')
 
