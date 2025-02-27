@@ -1,10 +1,20 @@
-import sys
+
+####
+'GDAL requires Python 3.9 minimum'
+'Same as MakeMaps.py script except it doesnt create an exe.'
+'Modify list.txt with query info with columns: var_name, year_window, gcm_name'
+'VALID VARIABLE NAME STRINGS: DEM, accm, mean, mx5p, pwd, pww, ratio, sdev, skew, srad, srsd, tdew, timepk, tmax, tmin, tnsd, txsd'
+'VALID YEAR WINDOW STRINGS: 1974_2013, 2000_2029, 2010_2039, 2020_2049, 2030_2059, 2040_2069, 2050_2079, 2060_2089, 2070_2099'
+'VALID GCM NAME STRINGS: CCSM4, CanESM2, MIROC5'
+'Note that for DEM, ratio, and timepk, only the 1974_2013 window is valid.'
+####
+
 import os
-import pandas as pd
-from osgeo import ogr
 from osgeo import gdal
 
+
 cwd = os.getcwd()
+
 mapDIR = os.path.join(cwd)
 listFILE = os.path.join(cwd, 'list.txt')
 
@@ -47,4 +57,3 @@ if __name__ == '__main__':
   maps = readlist(listFILE)
   for m in maps:
     makegeotiff(m[0], m[1], m[2])
-  
