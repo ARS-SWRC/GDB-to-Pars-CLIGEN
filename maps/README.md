@@ -18,10 +18,10 @@ Creates parameter maps in geotiff format for cases where ESRI GDB is not the pre
        |--maps_out
            |--*.tif
        |--MakeMaps_Standalone.py (if running as Python script only)
-       |--MakeMaps.py (if compiling exe)
+       |--MakeMaps.py (run with PyInstaller when compiling exe)
        |--MakeMaps.exe (if compiling exe, move exe from dist folder to here)
-       |--build (created by pyinstaller when compiling exe, not needed after compiling)
-       |--dist (created by pyinstaller when compiling exe, not needed after compiling)
+       |--build (created by PyInstaller when compiling exe, not needed after compiling)
+       |--dist (created by PyInstaller when compiling exe, not needed after compiling)
 ```
 ## User Inputs
 The main options are specified in `list.txt` and should be modified by the user. This file contains a list of lat/lon points to write *.par files to the `maps_out` folder. `list.txt` has placeholder entries as examples. It is then necessary to put the names of these *.txt files in `list.txt`. An easier option is using `Search` as the wind option in `list.txt`, which automatically uses wind parameter sets from the nearest station in `parfiles-2015`.
