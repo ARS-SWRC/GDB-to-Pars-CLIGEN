@@ -19,9 +19,9 @@ This Python-based package queries ESRI formatted geodatabases (GDBs) that contai
        |--*.par
    |--wind-strings
        |--*.txt
-   |--CCSM4.gdb
-   |--CanESM2.gdb
-   |--MIROC5.gdb
+   |--CCSM4.gdb (at least one of three GDBs needed)
+   |--CanESM2.gdb (at least one of three GDBs needed)
+   |--MIROC5.gdb (at least one of three GDBs needed)
    |--classes
        |--formatting.py
        |--__init__.py
