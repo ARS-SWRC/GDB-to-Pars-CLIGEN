@@ -28,8 +28,8 @@ This Python-based package queries ESRI formatted geodatabases (GDBs) that contai
    |--parfiles-2015
        |--*.par
    |--CL_Tool_Standalone.py (if running as Python script only)
-   |--CL_Tool.py (if compiling exe)
-   |--CL_Tool.exe (if compiling exe, move exe from dist folder to here)
+   |--CL_Tool.py (run with PyInstaller when compiling exe)
+   |--CL_Tool.exe (after compiling exe, move exe from dist folder to here)
    |--build (created by pyinstaller when compiling exe, not needed after compiling)
    |--dist (created by pyinstaller when compiling exe, not needed after compiling)
 ```
