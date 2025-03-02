@@ -19,7 +19,7 @@ Creates parameter maps in geotiff format for cases where ESRI GDB is not the pre
            |--*.tif
        |--MakeMaps_Standalone.py (if running as Python script only)
        |--MakeMaps.py (run with PyInstaller when compiling exe)
-       |--MakeMaps.exe (if compiling exe, move exe from dist folder to here)
+       |--MakeMaps.exe (after compiling exe, move exe from dist folder to here)
        |--build (created by PyInstaller when compiling exe, not needed after compiling)
        |--dist (created by PyInstaller when compiling exe, not needed after compiling)
 ```
