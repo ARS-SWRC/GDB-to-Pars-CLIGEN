@@ -2,7 +2,7 @@
 Creates CLIGEN par files from ESRI geodatabases containing parameter maps.
 
 ## Description
-This Python-based package queries ESRI formatted geodatabases (GDBs) that contain CLIGEN parameter map sets based on gridded climate projections. The GDBs are supplied as part of the SWPar4.5 dataset with coverage of Nevada, Utah, Arizona and New Mexico in the southwestern U.S. at ~800m resolution. To make the data accessible, this tool has two purposes: (**1**) the primary purpose is to create formatted parameter files that are required CLIGEN input; (**2**) secondarily, parameter maps in geotiff format may be created for cases where ESRI GDB is not the preferred format or if only a subset of maps is desired. The directory structure matters for files/folders the parent folder and the maps folder when the stand alone scripts or EXEs are run.
+This Python-based package queries ESRI formatted geodatabases (GDBs) that contain CLIGEN parameter map sets based on gridded climate projections. The GDBs are supplied as part of the SWPar4.5 dataset with coverage of Nevada, Utah, Arizona and New Mexico in the southwestern U.S. at ~800m resolution. To make the data accessible, this tool has two purposes: (**1**) the primary purpose is to create formatted parameter files that are required CLIGEN input; (**2**) secondarily, parameter maps in geotiff format may be created for cases where ESRI GDB is not the preferred format or if only a subset of maps is desired. The directory structure matters for parent folder and the maps folder when the stand alone scripts or EXEs are run and should be the same directory structure as detailed below.
 
 ## Requirements
 - Python 3.9 minimum
