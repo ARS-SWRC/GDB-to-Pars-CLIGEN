@@ -30,8 +30,8 @@ This Python-based package queries ESRI formatted geodatabases (GDBs) that contai
    |--CL_Tool_Standalone.py (if running as Python script only)
    |--CL_Tool.py (run with PyInstaller when compiling exe)
    |--CL_Tool.exe (after compiling exe, move exe from dist folder to here)
-   |--build (created by pyinstaller when compiling exe, not needed after compiling)
-   |--dist (created by pyinstaller when compiling exe, not needed after compiling)
+   |--build (created by PyInstaller when compiling exe, not needed after compiling)
+   |--dist (created by PyInstaller when compiling exe, not needed after compiling)
 ```
 ## User Inputs
 The user manually modifies `list.txt` with a list of lat/lon points to write *.par files to the `pars` folder for. The `list.txt` file has placeholder entries as examples, with resulting placeholder files inside `pars` and `wind-strings`. The SWPar4.5 dataset includes all required parameters except for wind parameter sets. In order to produce complete *.par files, an option is to put custom *.txt files inside `wind-strings` that contain formatted wind parameter text blocks, which may be taken from ground stations in `parfiles-2015`. It is then necessary to put the names of these *.txt files in `list.txt`. An easier option is using `Search` as the wind option in `list.txt`, which automatically uses wind parameter sets from the nearest station in `parfiles-2015`.
