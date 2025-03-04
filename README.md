@@ -51,4 +51,4 @@ Valid wind options:
 Search, <some_custom_wind_string_name>
 ```
 ## Running
-The PyInstaller command used to create the EXEs has the windowless option enabled. This means that the created EXEs run in the background. The EXEs were ran successfully if the outputs specified in list.txt appear in either the Pars folder or the maps_out folder, depending on which EXE was used. If the expected outputs don't appear, check for errors in the formatting in list.txt and that the directory structure is correct.
+The PyInstaller command used to create the EXEs has the windowless option enabled. This means that the created EXEs run in the background. The EXEs were ran successfully if the outputs specified in list.txt appear in either the pars folder or the maps_out folder, depending on which EXE was used. If the expected outputs don't appear, check for errors in the formatting in list.txt and that the directory structure is correct.
