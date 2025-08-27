@@ -1,7 +1,7 @@
 # GDB-to-Pars-CLIGEN
 Creates CLIGEN par files from ESRI geodatabases containing parameter maps. The geodatabases are available at:
-https://doi.org/10.25422/azu.data.28507262
-https://doi.org/10.25422/azu.data.28719917
+SWPar4.5 https://doi.org/10.25422/azu.data.28507262
+SWPar8.5 https://doi.org/10.25422/azu.data.28719917
 
 ## Description
 This Python-based package queries ESRI formatted geodatabases (GDBs) that contain CLIGEN parameter map sets based on gridded climate projections. The GDBs are supplied as part of the SWPar4.5 dataset with coverage of Nevada, Utah, Arizona and New Mexico in the southwestern U.S. at ~800m resolution. To make the data accessible, this tool has two purposes: (**1**) the primary purpose is to create formatted parameter files that are required CLIGEN input; (**2**) secondarily, parameter maps in geotiff format may be created for cases where ESRI GDB is not the preferred format or if only a subset of maps is desired. The directory structure matters for the parent folder and the maps folder when either the stand alone scripts or EXEs are run. The directory structure should be the same as detailed below, and viewing the maps folder shows the necessary structure for this sub-folder when creating geotiff maps.
