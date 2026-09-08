@@ -3,7 +3,8 @@
 class Formatting(object):
 
   def spacing_gen(self, row_list):
-  
+    spacing = ''
+    
     for i, elem in enumerate(row_list):
     
         if i < 1:
@@ -55,7 +56,8 @@ class Formatting(object):
 
 
   def spacing_lat_lon(self, coord):
-    
+    spacing = ''
+
     if len(coord) == 7:
       spacing = ''
     elif len(coord) == 6:
@@ -71,7 +73,8 @@ class Formatting(object):
 
 
   def spacing_elev(self, elev):
-
+    spacing = ''
+    
     if len(elev) == 6:
         spacing = ''
     elif len(elev) == 5:
@@ -86,4 +89,3 @@ class Formatting(object):
         pass
 
     return spacing
-

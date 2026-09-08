@@ -16,14 +16,16 @@
 import sys
 import os
 import pandas as pd
-from classes.Formatting import Formatting
+#sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from classes.formatting import Formatting
 formatting_obj = Formatting()
 from osgeo import ogr
 from osgeo import gdal
 
 
-application_path = os.path.dirname(sys.executable)
-cwd = application_path
+#application_path = os.path.dirname(sys.executable)
+#cwd = application_path
+cwd = os.getcwd()
 
 parDIR = os.path.join(cwd, 'pars')
 parnetDIR = os.path.join(cwd, 'parfiles-2015')
@@ -126,6 +128,12 @@ def main(point, spoints):
     else:
       raster_name = varlb + '_1974_2013'
   
+    gcm_name = point[4]
+    gdbDIR = os.path.join(cwd, '{}.gdb'.format(gcm_name))
+
+    print(f'GDBDIR = {gdbDIR}')
+    print(f'Raster name = {raster_name}')
+
     raster = gdal.Open(f'OpenFileGDB:{gdbDIR}:{raster_name}')
     transform = raster.GetGeoTransform()
     xp, yp = coord2pixel(lon, lat, transform)
@@ -249,5 +257,6 @@ if __name__ == '__main__':
     print(point[0])
     gcm_name = point[4]
     gdbDIR = os.path.join(cwd, '{}.gdb'.format(gcm_name))
+    print(f'gdbDIR: {gdbDIR}')
     main(point, spoints)
     

@@ -1,6 +1,325 @@
-<form method="POST" action="/">
-    <label for="text_input">Enter text:</label>
-    <input type="text" id="text_input" name="text_input"><br><br>
-    <input type="submit" value="Submit">
-</form>
-<b>Try: testA,40,-111,1974_2013,CCSM4,Search</b>
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Gerardo Armendariz">
+        <title>CLIGEN Parameter File Creator</title>
+
+        <script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
+        <link href="https://getbootstrap.com//docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="shortcut icon" type="image/x-icon" href="https://getbootstrap.com/docs/images/favicon.ico" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            .leaflet-container {
+                height: 400px;
+                width: 600px;
+                max-width: 100%;
+                max-height: 100%;
+            }
+            .tooltip-inner {
+                max-width: 350px; /* or any width you prefer */
+                width: auto;
+                text-align: left;
+                white-space: pre-line; /* allows line breaks */
+}
+
+        </style>
+        <meta name="theme-color" content="#2A61F6">
+        <style>.bd-placeholder-img{font-size:1.125rem;text-anchor:middle;-webkit-user-select:none;-moz-user-select:none;user-select:none}@media (min-width: 768px){.bd-placeholder-img-lg{font-size:3.5rem}}.b-example-divider{width:100%;height:3rem;background-color:#0000001a;border:solid rgba(0,0,0,.15);border-width:1px 0;box-shadow:inset 0 .5em 1.5em #0000001a,inset 0 .125em .5em #00000026}.b-example-vr{flex-shrink:0;width:1.5rem;height:100vh}.bi{vertical-align:-.125em;fill:currentColor}.nav-scroller{position:relative;z-index:2;height:2.75rem;overflow-y:hidden}.nav-scroller .nav{display:flex;flex-wrap:nowrap;padding-bottom:1rem;margin-top:-1px;overflow-x:auto;text-align:center;white-space:nowrap;-webkit-overflow-scrolling:touch}.btn-bd-primary{--bd-violet-bg: #2A61F6;--bd-violet-rgb: 112.520718, 44.062154, 249.437846;--bs-btn-font-weight: 600;--bs-btn-color: var(--bs-white);--bs-btn-bg: var(--bd-violet-bg);--bs-btn-border-color: var(--bd-violet-bg);--bs-btn-hover-color: var(--bs-white);--bs-btn-hover-bg: #2A61F6;--bs-btn-hover-border-color: #2A61F6;--bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);--bs-btn-active-color: var(--bs-btn-hover-color);--bs-btn-active-bg: #2A61F6;--bs-btn-active-border-color: #5a23c8}.bd-mode-toggle{z-index:1500}.bd-mode-toggle .bi{width:1em;height:1em}.bd-mode-toggle .dropdown-menu .active .bi{display:block!important}</style>
+    </head>
+    <body>
+        <svg
+            xmlns="http://www.w3.org/2000/svg" class="d-none">
+            <symbol id="check2" viewBox="0 0 16 16">
+                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
+            </symbol>
+            <symbol id="circle-half" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+            </symbol>
+            <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+                <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
+                <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
+            </symbol>
+            <symbol id="sun-fill" viewBox="0 0 16 16">
+                <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+            </symbol>
+        </svg>
+        <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+            <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+                <svg class="bi my-1 theme-icon-active" aria-hidden="true">
+                    <use href="#circle-half"></use>
+                </svg>
+                <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+                <li>
+                    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                        <svg class="bi me-2 opacity-50" aria-hidden="true">
+                            <use href="#sun-fill"></use>
+                        </svg>Light
+                        <svg class="bi ms-auto d-none" aria-hidden="true">
+                            <use href="#check2"></use>
+                        </svg>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                        <svg class="bi me-2 opacity-50" aria-hidden="true">
+                            <use href="#moon-stars-fill"></use>
+                        </svg>Dark
+                        <svg class="bi ms-auto d-none" aria-hidden="true">
+                            <use href="#check2"></use>
+                        </svg>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+                        <svg class="bi me-2 opacity-50" aria-hidden="true">
+                            <use href="#circle-half"></use>
+                        </svg>Auto
+                        <svg class="bi ms-auto d-none" aria-hidden="true">
+                            <use href="#check2"></use>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <main>
+            <div class="container py-4">
+                <header class="pb-3 mb-4 border-bottom">
+                    <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
+                        <span class="fs-3">CLIGEN Parameter File Creator</span>
+                    </a>
+                </header>
+                <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+                    <div class="container-fluid py-5" style="margin-top: -60px;">
+                        <form method="POST" action="/cligenpar">
+                        <!--<h1 class="display-5 fw-bold">Custom jumbotron</h1>-->
+                        <div class="mb-3">
+                            <p class="col-md-8 fs-4">
+                                How to use this app:
+                            </p>
+                            <p>
+                                <ol>
+                                    <li>Select the location for new climate station in map<br/> (anywhere inside the black polygon) </li>
+                                    <li>Enter scenario name</li>
+                                    <li>Select time range</li>
+                                    <li>Select model</li>
+                                    <li>Click submit to download PAR file</li>
+                                </ol>
+                            </p>
+                        </div>
+                        <div class="mb-3" style="float: right; margin-top: -180px;"">
+                            <p class="col-md-8 fs-4">
+                                Important project notes:
+                            </p>
+                            <p>
+                                <ul>
+                                    <li>Dataset repositories:
+                                        <ul>
+                                            <li><a href="https://arizona.figshare.com/articles/dataset/Southwest_Parameter_Set_4_5_SWPar4_5_for_the_CLIGEN_Stochastic_Weather_Generator/28507262" target="_blank">SWPar4.5 for the CLIGEN Stochastic Weather Generator</a></li>
+                                            <li><a href="https://arizona.figshare.com/articles/dataset/Southwest_Parameter_Set_8_5_SWPar8_5_for_the_CLIGEN_Stochastic_Weather_Generator/28719917" target="_blank">SWPar8.5 for the CLIGEN Stochastic Weather Generator</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="https://www.nccs.nasa.gov/services/data-collections/land-based-products/nex-dcp30" target="_blank">NEX-DCP30 ~800m</a> resolution (30 arc seconds) data was used for this project</li>
+                                </ul>
+                            </p>
+                        </div>
+
+                        <div id="map" style="width: 100%; height: 400px;"></div>
+                        
+                        <!--<input type="hidden" id="lat" name="lat" value="51.505">-->
+                        <!--<input type="hidden" id="lon" name="lon" value="-0.09">-->
+                        <input type="hidden" id="text_input" name="text_input"><br><br>
+                        <input type="hidden" id="scenario_name" name="scenario_name" value="">
+                        <input type="hidden" id="time_range" name="time_range" value="">
+                        <input type="hidden" id="model_name" name="model_name" value="">
+                        <input type="hidden" id="search_wind" name="search_wind" value="">
+
+                        <div class="mb-3">
+    <label>SWPar Option:</label>
+    <!-- Info icon with tooltip -->
+      
+    <span 
+    data-bs-toggle="tooltip" 
+    data-bs-placement="right" 
+    data-bs-html="true"
+    title="<b>SWPar4.5:</b> A parameter set that follows the RCP4.5 projection of global temperature increasing 2-3°C by 2100.<br>
+           <b>SWPar8.5:</b> A parameter set that follows the RCP8.5 projection of global temperature increasing 4-5°C by 2100.">
+        <i class="bi bi-info-circle" style="font-size: 1.2rem; color: #0d6efd; margin-left: 6px; cursor: pointer;"></i>
+    </span> 
+    <br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="swpar_option" id="swpar45" value="45" checked>
+        <label class="form-check-label" for="swpar45">SWPar4.5</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="swpar_option" id="swpar85" value="85">
+        <label class="form-check-label" for="swpar85">SWPar8.5</label>
+    </div>
+</div>
+                        <div class="mb-3">
+                            <label for="scenario_name_input">Latitude:</label>
+                            <input type="text" class="form-control" id="lat" name="lat">
+                            <label for="scenario_name_input">Longitude:</label>
+                            <input type="text" class="form-control" id="lon" name="lon">
+                        </div>
+                        <div class="mb-3">
+                            <label for="scenario_name_input">Scenario Name:</label>
+                            <input type="text" class="form-control" id="scenario_name_input" name="scenario_name_input">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="time_range_input">Time Range:</label>
+                            <select class="form-select" id="time_range_input" name="time_range_input">
+                                <option value="1974_2013">1974_2013</option>
+                                <option value="2000_2029">2000_2029</option>
+                                <option value="2010_2039">2010_2039</option>
+                                <option value="2020_2049">2020_2049</option>
+                                <option value="2020_2049">2030_2059</option>
+                                <option value="2020_2049">2040_2069</option>
+                                <option value="2020_2049">2050_2079</option>
+                                <option value="2020_2049">2060_2089</option>
+                                <option value="2020_2049">2070_2099</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                             <!-- Info icon with tooltip -->
+                            <label for="model_select">Model:</label> 
+                            <span 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="right" 
+                                data-bs-html="true"
+                                title="<b>CCSM4:</b> A GCM seleted from the CMIP5 ensemble to be representative of the ensemble mean outcome for annual precipitation.<br/>
+                                <b>CanESM2:</b> A GCM seleted from the CMIP5 ensemble to be representative of an outcome for annual precipitation that is higher than the ensemble mean.<br/>
+                                <b>MIROC5:</b> A GCM seleted from the CMIP5 ensemble to be representative of an outcome for annual precipitation that is lower than the ensemble mean.">
+                                <i class="bi bi-info-circle" style="font-size: 1.2rem; color: #0d6efd; margin-left: 6px; cursor: pointer;"></i>
+                            </span>
+                            <select class="form-select" id="model_select" name="model_select">
+                                <option value="CCSM4">CCSM4</option>
+                                <option value="CanESM2">CanESM2</option>
+                                <option value="MIROC5">MIROC5</option>
+                            </select>
+                        </div>
+                        <!--<div class="mb-3">
+                            <label for="search_wind_select">Search Wind:</label>
+                            
+                            <div class="mb-3 form-check">     
+                        </div>-->
+                        <input type="hidden" class="form-check-input" id="search_wind_check" name="search_wind_check" checked>
+                        
+                        <button id="submitbutton" class="btn btn-primary btn-lg" type="submit" value="Submit" style="margin-top:30px;">Submit</button>
+                    
+                        <script>
+                            // Initialize the map centered on the CONUS centroid
+                            const map = L.map('map').setView([37, -112], 5.3);
+                            let boundaryGeoJSON = null;
+
+                            // Add a light grey basemap
+                            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_32ld_1_5335375064580c01aada5606', {
+                                attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+                                subdomains: 'abcd',
+                                maxZoom: 19
+                            }).addTo(map);
+
+                            // Load and display the CONUS boundary
+                            fetch("cligenpar/static/western_states.geojson")//'https://gist.githubusercontent.com/lossyrob/7e1456e0fd39dea51e7691bbcf940892/raw/continental-usa.geojson')
+                                .then(response => response.json())
+                                .then(data => {
+                                    boundaryGeoJSON = data;
+                                    L.geoJSON(data, {
+                                        style: {
+                                            color: "#444",
+                                            weight: 2,
+                                            fillOpacity: 0
+                                        }
+                                    }).addTo(map);
+                                });
+
+                            // Only accept clicks inside the boundary polygon
+                            map.on('click', function(e) {
+                                if (!boundaryGeoJSON) {
+                                    return;
+                                }
+                                const lat = e.latlng.lat.toFixed(5);
+                                const lng = e.latlng.lng.toFixed(5);
+                                const point = turf.point([Number(lng), Number(lat)]);
+                                const isInside = boundaryGeoJSON.features.some(feature => turf.booleanPointInPolygon(point, feature));
+
+                                if (!isInside) {
+                                    document.getElementById('lat').value = "";
+                                    document.getElementById('lon').value = "";
+                                    L.popup()
+                                        .setLatLng(e.latlng)
+                                        .setContent("Please select a point within the boundary")
+                                        .openOn(map);
+                                    return;
+                                }
+
+                                document.getElementById('lat').value = lat;
+                                document.getElementById('lon').value = lng;
+                                L.popup()
+                                    .setLatLng(e.latlng)
+                                    .setContent(`Lat: ${lat}<br>Lng: ${lng}`)
+                                    .openOn(map);
+                            });
+
+                            // On form submit, collect values and log to console
+                            document.getElementById('submitbutton').addEventListener('click', function(event) {
+                                const scenario = document.getElementById('scenario_name_input').value;
+                                const lat = Number(document.getElementById('lat').value).toFixed(5);
+                                const lon = Number(document.getElementById('lon').value).toFixed(5);
+                                const timeRange = document.getElementById('time_range_input').value;
+                                const swpar = document.querySelector('input[name="swpar_option"]:checked').value;
+                                const model = swpar + "_" + document.getElementById('model_select').value;
+                                const searchWind = document.getElementById('search_wind_check').checked ? 'Search' : 'Custom';
+
+                                //console.log({scenario, lat, lon, timeRange, model, searchWind});
+
+                                const result = [scenario, lat, lon, timeRange, model, searchWind].join(',');
+                                document.getElementById('text_input').value = result;
+
+                                if(document.getElementById("scenario_name_input").value == "") {
+                                    document.getElementById("scenario_name_input").value = "Scenario";
+                                }
+                                
+                                this.form.submit();
+                            });
+                        </script>
+                    </form>
+                    </div>
+                </div>
+                <footer class="pt-3 mt-4 text-body-secondary border-top">&copy; 2025  
+                    <pre style="text-align: center;"><a href="https://github.com/ARS-SWRC/GDB-to-Pars-CLIGEN" target="_blank">Code on Github</a> • <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/cligen/" target="_blank">The CLIGEN Model</a>
+                    </pre>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://www.tucson.ars.ag.gov/" target="_blank"><img src="cligenpar/static/SWRC_White_Logo.png" width="120px" height="100%"></a>
+                        <a href="https://arizona.edu" target="_blank" style="height: 100%;"><img src="cligenpar/static/UA_rev_horiz_rgb.png" width="120px" height="100%" style="margin-top:10px;"></a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+        <script src="https://getbootstrap.com//docs/5.3/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+                <!-- Place your tooltip script here -->
+            <script>
+                // Enable Bootstrap tooltips
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                })
+            </script>
+    </body>
+</html>

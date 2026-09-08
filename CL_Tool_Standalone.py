@@ -14,7 +14,7 @@
 
 import os
 import pandas as pd
-from classes.Formatting import Formatting
+from classes.formatting import Formatting
 formatting_obj = Formatting()
 from osgeo import ogr
 from osgeo import gdal
